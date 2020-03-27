@@ -1,0 +1,27 @@
+#******************************************************************************
+# Copyright (C) 2017 by Alex Fosdick - University of Colorado
+#
+# Redistribution, modification or use of this software in source or binary
+# forms is permitted as long as the files maintain this copyright. Users are 
+# permitted to modify this and use it to learn about the field of embedded
+# software. Alex Fosdick and the University of Colorado are not liable for any
+# misuse of this material. 
+#
+#*****************************************************************************
+
+# Add your Source files to this variable
+SOURCES = main.c \
+		memory.c
+		  
+# Add your include paths to this variable
+MSP432_INCLUDES = -I../include/msp432 \
+				  -I../include/CMSIS \
+				  $(INCLUDES)
+
+INCLUDES =-I../include/common/
+
+#			/*/d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/CMSIS/*.h /
+#		   /d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/msp432/*h/
+#		   /d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/common/*h*/
+		   
+
