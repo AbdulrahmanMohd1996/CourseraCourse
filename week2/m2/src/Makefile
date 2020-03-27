@@ -27,10 +27,10 @@
 #	   OUTPUT_FILE - the name of the last Excubtible file
 #	   SRC - the source file as every platform hase it's on platform ( HOST_SRC, MSP432_SRC)
 #	   CC - THE COMIPLER TOOL NAME (gcc, arm-none-eabi-gcc )
-#	   LD - THE LINKER TOOL NAME ( )
-#
-#
-#
+#	   LD - THE LINKER TOOL NAME (ld,arm-none-eabi-ld)
+#	   OBHDUMP - THE OBJECT DUMB TOOL NAME (objdump , arm-none-eabi-objdump )
+#	   CFLAGS  - paltform comipler flages
+#	   LDFLAGS - paltform LINKER flages
 #
 3		
 #
@@ -40,18 +40,24 @@ include sources.mk
 # Platform Overrides
 PLATFORM = HOST
 
+#Const. Variables at this project
 GENERAL_FLAGES= -Wall -Werror -g -O0 -std=c99
 OUTPUT_FILE = c1m2.out
 
-ifeq ($(PLATFORM),HOST)
+
+ifeq ($(PLATFORM),HOST) #if the the Platform is Host
+
+#the Source Files Names
 		SRC= $(HOST_SRC)
-				
+#GNU Tool NAMES				
 		CC = gcc
 		LD =ld
 		OBJDUMP = objdump
 		
+		#Cimpiler Flages for Sitting the Host name
 		CFLAGS= $(GENERAL_FLAGES) $(INCLUDES)
-else ifeq ($(PLATFORM),MSP432)	
+		
+else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 	SRC= $(MSP432_SRC)
 		# Architectures Specific Flags
 	LINKER_FILE = ../msp432p401r.lds
@@ -59,22 +65,26 @@ else ifeq ($(PLATFORM),MSP432)
 	ARCH = thumb
 	SPECS = nosys.specs
 
-	# Compiler Flags and Defines
+	#GNU Tool NAMES
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
 	OBJDUMP = arm-none-eabi-objdump
 	
+	#Comipler and Linker Flages
 	LDFLAGS = -Wl,-Map=$(OUTPUT_FILE).map -T $(LINKER_FILE) 
 	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=armv7e-m  -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS) $(MSP432_INCLUDES) $(GENERAL_FLAGES)
 	
 endif
-
+	
+	#Pre Procceseor Flage to Define the Platform 
 	CPPFLAGS = -D $(PLATFORM)
 	
+	#variables list of the source file and all the comiplation procceses file Ext 
 	OBJS = $(SRC:.c=.o)
 	PRE = $(SRC:.c=.i)
 	ASM = $(SRC:.c=.asm)
 
+#my PHONYS
 
 .PHONY: build
 build: GEN_EXC
@@ -89,7 +99,7 @@ clean : CLEAN
 	
 
 
-
+#My Targets
 %.i: %.c
 	$(CC) -E $< $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@
 
