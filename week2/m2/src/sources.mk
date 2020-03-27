@@ -10,18 +10,20 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-SOURCES = main.c \
+HOST_SRC = main.c \
 		memory.c
+
+INCLUDES =-I../include/common/
 		  
 # Add your include paths to this variable
 MSP432_INCLUDES = -I../include/msp432 \
 				  -I../include/CMSIS \
 				  $(INCLUDES)
 
-INCLUDES =-I../include/common/
-
-#			/*/d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/CMSIS/*.h /
-#		   /d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/msp432/*h/
-#		   /d/myAssAtIntoToEmbeddedSystemCourse/ese-coursera-course1/assessments/m2/include/common/*h*/
+MSP432_SRC = main.c \
+			memory.c \
+			system_msp432p401r.c \
+			startup_msp432p401r_gcc.c \
+			interrupts_msp432p401r_gcc.c
 		   
 
