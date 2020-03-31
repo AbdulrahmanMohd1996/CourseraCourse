@@ -13,9 +13,8 @@
  */
 
 
-
-#include <stdio.h>
 #include "stats.h"
+#include "platform.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -27,8 +26,17 @@ int main() {
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
-	/*need to sort the array first*/
+#ifdef VERBOSE
+  	PRINTF("this array :\n");
+	print_array(test,SIZE);
+#endif
+  /*need to sort the array first*/
 	sort_array( test , SIZE );
+
+#ifdef VERBOSE
+	PRINTF("array after sorting:\n");
+	print_array(test,SIZE);
+#endif
 
   /* Statistics and Printing Functions Go Here */
   print_statistics(test,SIZE);
@@ -37,18 +45,16 @@ int main() {
 
 void print_statistics(unsigned char* a_arr, unsigned char a_arr_length )
 {
-	printf("this array :\n");
-	print_array(a_arr,a_arr_length);
-	printf("array after sorting:\n");
-	print_array(a_arr,a_arr_length);
-	printf("and it is statistics :\n");
-	printf("the median: %d\n", find_median(a_arr,a_arr_length));
-	printf("the mean: %d\n", find_mean(a_arr,a_arr_length ));
-	printf("the MAX: %d\n", find_maximum(a_arr,a_arr_length ));
-	printf("the MIN: %d\n", find_minimum(a_arr,a_arr_length));
+
+	PRINTF("and it is statistics :\n");
+	PRINTF("the median: %d\n", find_median(a_arr,a_arr_length));
+	PRINTF("the mean: %d\n", find_mean(a_arr,a_arr_length ));
+	PRINTF("the MAX: %d\n", find_maximum(a_arr,a_arr_length ));
+	PRINTF("the MIN: %d\n", find_minimum(a_arr,a_arr_length));
 }
 
 
+#ifdef VERBOSE
 void print_array(unsigned char* a_arr, unsigned char a_arr_length )
 {
 	/*create an iterration local variable*/
@@ -57,10 +63,12 @@ void print_array(unsigned char* a_arr, unsigned char a_arr_length )
 	for(i=0;i<a_arr_length;i++)
 	{
 		/*loop till the array is finished and print it is element*/
-		printf("%d ",a_arr[i]);
+		PRINTF("%d ",a_arr[i]);
 	}
-	printf("\n\n");
+	PRINTF("\n\n");
 }
+
+#endif
 
 unsigned char find_median(unsigned char* a_arr, unsigned char a_arr_length )
 {

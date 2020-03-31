@@ -10,19 +10,19 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-HOST_SRC = main.c \
-		memory.c
+COMMON_SRC = main.c\
+			memory.c\
+			data.c\
+			stats.c\
+			course1.c
 
-INCLUDES =-I../include/common/
+COMMON_INCLUDES =-I../include/common/
 		  
 # Add your include paths to this variable
 MSP432_INCLUDES = -I../include/msp432 \
 				  -I../include/CMSIS \
-				  $(INCLUDES)
-
-MSP432_SRC = main.c \
-			memory.c \
-			system_msp432p401r.c \
+				  
+MSP432_SRC = system_msp432p401r.c \
 			startup_msp432p401r_gcc.c \
 			interrupts_msp432p401r_gcc.c
 		   

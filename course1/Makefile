@@ -35,21 +35,19 @@ OUTPUT_FILE = final.out
 
 
 ifeq ($(PLATFORM),HOST) #if the the Platform is Host
-
-#the Source Files Names
-		SRC= $(HOST_SRC)
+	SRC= $(COMMON_SRC)
 #GNU Tool NAMES				
 		CC = gcc
 		LD =ld
 		OBJDUMP = objdump
 		
 		#Cimpiler Flages for Sitting the Host name
-		CFLAGS= $(GENERAL_FLAGES) $(INCLUDES)
+		CFLAGS= $(GENERAL_FLAGES) $(COMMON_INCLUDES)
 		
 else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
-	SRC= $(MSP432_SRC)
-		# Architectures Specific Flags
-	LINKER_FILE = ../msp432p401r.lds
+	SRC= $(COMMON_SRC) $(MSP432_SRC)
+	# Architectures Specific Flags
+	LINKER_FILE = msp432p401r.lds
 	CPU =cortex-m4
 	ARCH = thumb
 	SPECS = nosys.specs
@@ -61,7 +59,7 @@ else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 	
 	#Comipler and Linker Flages
 	LDFLAGS = -Wl,-Map=$(OUTPUT_FILE).map -T $(LINKER_FILE) 
-	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=armv7e-m  -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS) $(MSP432_INCLUDES) $(GENERAL_FLAGES)
+	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=armv7e-m  -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS) $(MSP432_INCLUDES) $(COMMON_INCLUDES) $(GENERAL_FLAGES)
 	
 endif
 	
