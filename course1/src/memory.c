@@ -48,3 +48,9 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length)
+{
+
+}
+

@@ -1,13 +1,3 @@
-/******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
- *
- *****************************************************************************/
 /**
  * @file memory.h
  * @brief Abstraction of memory read and write operations
@@ -89,5 +79,97 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+
+/**
+ * @brief move from the source location to the destination.
+ *
+ * This function takes two byte pointers (one source and one destination) and a
+ * length of bytes to move from the source location to the destination.
+ *
+ * @param src Pointer to source address
+ * @param dst Pointer to distenation address
+ * @param length length of moved elemnts
+ *
+ * @return a pointer to the destination (dst).
+ */
+unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned char length);
+
+/**
+ * @brief copy from the source location to the destination.
+ *
+ * This function takes two byte pointers (one source and one destination) and a
+ * length of bytes to copy from the source location to the destination.
+ *
+ * @param src Pointer to source address
+ * @param dst Pointer to distenation address
+ * @param length length of copied elemnts
+ *
+ * @return a pointer to the destination (dst).
+*/
+unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned char  length);
+
+
+/**
+ * @brief set all locations of that memory to a given value.
+ *
+ * This should take a pointer to a source memory location,
+ * a length in bytes and set all locations of that memory to a given value.
+ *
+ * @param src Pointer to source address
+ * @param length length of set elemnts
+ * @param value the value that wanted to set with
+ *
+ * @return Should return a pointer to the source (src).
+*/
+unsigned char * my_memset(unsigned char * src, unsigned char length, unsigned char value);
+
+/**
+ * @brief set all locations of that memory to zero.
+ *
+ * This should take a pointer to a source memory location,
+ * a length in bytes and set all locations of that memory to zero.
+ *
+ * @param src Pointer to source address
+ * @param length length of set elemnts
+ *
+ * @return Should return a pointer to the source.
+*/
+unsigned char * my_memzero(unsigned char * src, unsigned char length);
+
+/**
+ * @brief  reverse the order of all of the bytes.
+ *
+ * This should take a pointer to a memory location and a
+ * length in bytes and reverse the order of all of the bytes.
+ *
+ * @param src Pointer to source address
+ * @param length length of set elemnts
+ *
+ * @return Should return a pointer to the source.
+*/
+unsigned char * my_reverse(unsigned char * src, unsigned char length);
+
+/**
+ * @brief  allocate in dynamic memory
+ *
+ * This should take number of words to allocate in dynamic memory
+ *
+ * @param length length of set elemnts
+ *
+ * @return a pointer to memory if successful, or a Null Pointer if not successful
+*/
+unsigned long int * reserve_words(unsigned char length);
+
+/**
+ * @brief  free a dynamic memory allocation
+ *
+ * Should free a dynamic memory allocation by providing the pointer src to the function
+ *
+ * @param src src that will be freed
+ *
+ * @return void
+*/
+void free_words(unsigned long int * src);
 
 #endif /* __MEMORY_H__ */
