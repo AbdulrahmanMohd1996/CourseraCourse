@@ -28,6 +28,12 @@ char buffer[MAX_LENGTH];
 
 /* A pretty boring main file */
 int main(void) {
+
+
+#ifdef COURSE1
+	cours1(); /*calling the course1 function for the final assesment task for the course*/
+#else
+
   unsigned int i;
   char value;
 
@@ -49,6 +55,10 @@ int main(void) {
     PRINTF("%c", buffer[i]);
   }
   PRINTF("\n");
+
+#endif
+
   return 0;
+
 }
 

@@ -31,7 +31,7 @@ PLATFORM = HOST
 
 #Const. Variables at this project
 GENERAL_FLAGES= -Wall -Werror -g -O0 -std=c99
-OUTPUT_FILE = c1m2.out
+OUTPUT_FILE = final.out
 
 
 ifeq ($(PLATFORM),HOST) #if the the Platform is Host
@@ -66,7 +66,7 @@ else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 endif
 	
 	#Pre Procceseor Flage to Define the Platform 
-	CPPFLAGS = -D $(PLATFORM)
+	CPPFLAGS = -D $(PLATFORM) -D COURSE1
 	
 	#variables list of the source file and all the comiplation procceses file Ext 
 	OBJS = $(SRC:.c=.o)
