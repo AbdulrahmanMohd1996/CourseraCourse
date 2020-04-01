@@ -93,7 +93,7 @@ void clear_all(char * ptr, unsigned int size);
  *
  * @return a pointer to the destination (dst).
  */
-unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned char length);
+unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned long length);
 
 /**
  * @brief copy from the source location to the destination.
@@ -107,7 +107,7 @@ unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned ch
  *
  * @return a pointer to the destination (dst).
 */
-unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned char  length);
+unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned long  length);
 
 
 /**
@@ -122,7 +122,7 @@ unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned
  *
  * @return Should return a pointer to the source (src).
 */
-unsigned char * my_memset(unsigned char * src, unsigned char length, unsigned char value);
+unsigned char * my_memset(unsigned char * src, unsigned long length, unsigned char value);
 
 /**
  * @brief set all locations of that memory to zero.
@@ -135,7 +135,7 @@ unsigned char * my_memset(unsigned char * src, unsigned char length, unsigned ch
  *
  * @return Should return a pointer to the source.
 */
-unsigned char * my_memzero(unsigned char * src, unsigned char length);
+unsigned char * my_memzero(unsigned char * src, unsigned long length);
 
 /**
  * @brief  reverse the order of all of the bytes.
@@ -148,7 +148,7 @@ unsigned char * my_memzero(unsigned char * src, unsigned char length);
  *
  * @return Should return a pointer to the source.
 */
-unsigned char * my_reverse(unsigned char * src, unsigned char length);
+unsigned char * my_reverse(unsigned char * src, unsigned long length);
 
 /**
  * @brief  allocate in dynamic memory
@@ -159,7 +159,7 @@ unsigned char * my_reverse(unsigned char * src, unsigned char length);
  *
  * @return a pointer to memory if successful, or a Null Pointer if not successful
 */
-unsigned long int * reserve_words(unsigned char length);
+int * reserve_words(unsigned long length);
 
 /**
  * @brief  free a dynamic memory allocation
@@ -170,6 +170,6 @@ unsigned long int * reserve_words(unsigned char length);
  *
  * @return void
 */
-void free_words(unsigned long int * src);
+void free_words(int * src);
 
 #endif /* __MEMORY_H__ */

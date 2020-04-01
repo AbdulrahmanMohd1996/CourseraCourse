@@ -49,8 +49,85 @@ void clear_all(char * ptr, unsigned int size){
 }
 
 
-uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length)
+unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned long length);
 {
+	if(src==dst)
+		{
+			return dst;
+		}
+		else if(src<dst)
+		{
+			printf("src>dst\n");
+			for(unsigned long i=0;i<length;i++)
+			{
+				*(dst+((length-1)-i))=*(src+((length-1)-i));
+			}
+		}
+		else
+		{
+			printf("src<dst\n");
+			for(unsigned long i=0;i<=length;i++)
+			{
+				*(dst+i)=*(src+i);
+			}
+		}
 
+		return dst;
 }
 
+
+unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned long  length)
+{
+	for(unsigned long i=0;i<length;i++)
+	{
+		*(dst+i)=*(src+i);
+	}
+	return dst;
+}
+
+
+unsigned char * my_memset(unsigned char * src, unsigned char length, unsigned char value)
+{
+	for(unsigned long i=0;i<length;i++)
+	{
+		*(src+i)=value;
+	}
+
+	return src;
+}
+
+
+unsigned char * my_memzero(unsigned char * src, unsigned long length)
+{
+	for(unsigned long i=0;i<length;i++)
+	{
+		*(src+i)=0;
+	}
+
+	return src;
+}
+
+
+unsigned char * my_reverse(unsigned char * src, unsigned long length)
+{
+	unsigned char temp;
+	for(unsigned long i=0;i<((length-1)-i);i++)
+	{
+		temp=*(src+i);
+		*(src+i)=*(src+(length-1)-i);
+		*(src+(length-1)-i)=temp;
+	}
+	return src;
+}
+
+
+int* reserve_words(unsigned long length)
+{
+	return malloc(sizeof(int)*length);
+}
+
+
+void free_words(int* src)
+{
+	free(src);
+}
