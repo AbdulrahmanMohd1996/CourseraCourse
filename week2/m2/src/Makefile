@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------
+#***************************************************************************************************************
 # Simple makefile that can compile multiple source files and support two platform targets my Host machine and MSP432 Plateform 
 #
 # Use: make [TARGET] [PLATFORM-OVERRIDES]
@@ -20,10 +20,10 @@
 #	   OBHDUMP - THE OBJECT DUMB TOOL NAME (objdump , arm-none-eabi-objdump )
 #	   CFLAGS  - paltform comipler flages
 #	   LDFLAGS - paltform LINKER flages
+#		
 #
-3		
 #
-#------------------------------------------------------------------------------
+
 include sources.mk
 
 # Platform Overrides
@@ -33,42 +33,41 @@ PLATFORM = HOST
 GENERAL_FLAGES= -Wall -Werror -g -O0 -std=c99
 OUTPUT_FILE = c1m2.out
 
-
-ifeq ($(PLATFORM),HOST) #if the the Platform is Host
+#if the the Platform is Host
+ifeq ($(PLATFORM),HOST)
 
 #the Source Files Names
 		SRC= $(HOST_SRC)
 #GNU Tool NAMES				
-		CC = gcc
+		CC =gcc
 		LD =ld
 		OBJDUMP = objdump
 		
-		#Cimpiler Flages for Sitting the Host name
+#Cimpiler Flages for Sitting the Host name
 		CFLAGS= $(GENERAL_FLAGES) $(INCLUDES)
 		
-else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
+else ifeq ($(PLATFORM),MSP432)#if the the Platform is Host
 	SRC= $(MSP432_SRC)
-		# Architectures Specific Flags
+# Architectures Specific Flags
 	LINKER_FILE = ../msp432p401r.lds
 	CPU =cortex-m4
 	ARCH = thumb
 	SPECS = nosys.specs
 
-	#GNU Tool NAMES
+#GNU Tool NAMES
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
 	OBJDUMP = arm-none-eabi-objdump
 	
-	#Comipler and Linker Flages
+#Comipler and Linker Flages
 	LDFLAGS = -Wl,-Map=$(OUTPUT_FILE).map -T $(LINKER_FILE) 
 	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=armv7e-m  -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS) $(MSP432_INCLUDES) $(GENERAL_FLAGES)
 	
 endif
-	
-	#Pre Procceseor Flage to Define the Platform 
+#Pre Procceseor Flage to Define the Platform 
 	CPPFLAGS = -D $(PLATFORM)
 	
-	#variables list of the source file and all the comiplation procceses file Ext 
+#variables list of the source file and all the comiplation procceses file Ext 
 	OBJS = $(SRC:.c=.o)
 	PRE = $(SRC:.c=.i)
 	ASM = $(SRC:.c=.asm)
@@ -99,10 +98,11 @@ clean : CLEAN
 	$(OBJDUMP) -d $< >$@
 		
 %.o : %.c
-	$(CC) -c $< $(CFLAGS) $(CPPFLAGS)   $(LDFLAGS) -o $@ 
+	$(CC) -c $< $(CFLAGS) $(CPPFLAGS)   $(LDFLAGS) -o $@
 
 
 OBJ_GEN: $(OBJS)
+	
 
 
 GEN_EXC: $(SRC)
