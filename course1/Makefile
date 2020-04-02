@@ -28,6 +28,7 @@ include sources.mk
 
 # Platform Overrides
 PLATFORM = HOST
+ACTIVATE_TEST=NO
 
 #Const. Variables at this project
 GENERAL_FLAGES= -Wall -Werror -g -O0 -std=c99
@@ -37,12 +38,12 @@ OUTPUT_FILE = final.out
 ifeq ($(PLATFORM),HOST) #if the the Platform is Host
 	SRC= $(COMMON_SRC)
 #GNU Tool NAMES				
-		CC = gcc
-		LD =ld
-		OBJDUMP = objdump
+	CC = gcc
+	LD =ld
+	OBJDUMP = objdump
 		
-		#Cimpiler Flages for Sitting the Host name
-		CFLAGS= $(GENERAL_FLAGES) $(COMMON_INCLUDES)
+	#Cimpiler Flages for Sitting the Host name
+	CFLAGS= $(GENERAL_FLAGES) $(COMMON_INCLUDES)
 		
 else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 	SRC= $(COMMON_SRC) $(MSP432_SRC)
@@ -62,9 +63,12 @@ else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=armv7e-m  -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS) $(MSP432_INCLUDES) $(COMMON_INCLUDES) $(GENERAL_FLAGES)
 	
 endif
-	
+	ifeq($(ACTIVATE_TEST),YES)
+		CPPFLAGS = -D $(PLATFORM) -D COURSE1 -D VERBOSE 
+	else 
 	#Pre Procceseor Flage to Define the Platform 
-	CPPFLAGS = -D $(PLATFORM) -D COURSE1
+		CPPFLAGS = -D $(PLATFORM) -D COURSE1
+	endif
 	
 	#variables list of the source file and all the comiplation procceses file Ext 
 	OBJS = $(SRC:.c=.o)

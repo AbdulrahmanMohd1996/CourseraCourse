@@ -1,6 +1,6 @@
 /**
  * @file data.h
- * @brief Abstraction of memory read and write operations
+ * @briefAbstraction of data monubilation function documination
  *
  * This header file provides an abstraction of reading and
  * writing to data via function calls.
@@ -34,7 +34,7 @@ unsigned char my_itoa(int data, unsigned char * ptr, unsigned int base);
  *
  * @return  the length of the converted data.
  */
-int my_atoi(unsigned char * ptr, unsigned char digits, unsigned int base)
+int my_atoi(unsigned char * ptr, unsigned char digits, unsigned int base);
 
 
 #endif
