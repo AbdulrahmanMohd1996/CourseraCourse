@@ -62,12 +62,12 @@ unsigned char my_itoa(int data, unsigned char * ptr, unsigned int base)
 	*(ptr+dataCntr)='\0';
 	dataCntr++;
 
-	return dataCntr;
+	return (dataCntr-1);
 }
 
 
 
-int my_atoi(char * ptr, unsigned char digits, unsigned int base)
+int my_atoi(unsigned char * ptr, unsigned char digits, unsigned int base)
 {
 	unsigned char dataCntr=0;
 	unsigned char dataIsNeg=FALSE;

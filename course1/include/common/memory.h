@@ -12,6 +12,7 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdint.h>
 /**
  * @brief Sets a value of a data array 
  *
@@ -159,7 +160,7 @@ unsigned char * my_reverse(unsigned char * src, unsigned long length);
  *
  * @return a pointer to memory if successful, or a Null Pointer if not successful
 */
-int * reserve_words(unsigned long length);
+uint32_t * reserve_words(unsigned long length);
 
 /**
  * @brief  free a dynamic memory allocation
@@ -170,6 +171,6 @@ int * reserve_words(unsigned long length);
  *
  * @return void
 */
-void free_words(int * src);
+void free_words(uint32_t * src);
 
 #endif /* __MEMORY_H__ */

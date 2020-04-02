@@ -29,6 +29,7 @@
  */
 void print_statistics(unsigned char* a_arr, unsigned char a_arr_length );
 
+#ifdef VERBOSE
 /**
  * @brief < Given an array of data and a length, prints the array to the screen>
  *
@@ -41,6 +42,7 @@ void print_statistics(unsigned char* a_arr, unsigned char a_arr_length );
  * @return <void>
  */
 void print_array(unsigned char* a_arr, unsigned char a_arr_length );
+#endif
 
 /**
  * @brief <Given an array of data and a length, returns the median value>

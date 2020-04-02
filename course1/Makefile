@@ -12,6 +12,7 @@
 #		Clean - This should remove all compiled objects, preprocessed outputs, assembly outputs, executable files and build output files.
 #		all-files - Generate all the Comiplation process files and the map file as well the symbol table
 # Platform Overrides:
+#	   ACTIVATE_TEST - deefine verbose for printing the array as test
 #      PLATFORM - Cross or Native Comiplation ( HOST, MSP432)
 #	   OUTPUT_FILE - the name of the last Excubtible file
 #	   SRC - the source file as every platform hase it's on platform ( HOST_SRC, MSP432_SRC)
@@ -64,12 +65,12 @@ else ifeq ($(PLATFORM),MSP432)	#if the the Platform is Host
 	
 endif
 
-#ifeq ($(ACTIVATE_TEST),YES)
+ifeq ($(ACTIVATE_TEST),YES)
 	CPPFLAGS = -D $(PLATFORM) -D COURSE1 -D VERBOSE 
-#else 
+else 
 	#Pre Procceseor Flage to Define the Platform 
-#	CPPFLAGS = -D $(PLATFORM) -D COURSE1
-#endif
+	CPPFLAGS = -D $(PLATFORM) -D COURSE1
+endif
 	
 	#variables list of the source file and all the comiplation procceses file Ext 
 	OBJS = $(SRC:.c=.o)

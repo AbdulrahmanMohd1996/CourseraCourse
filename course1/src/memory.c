@@ -21,6 +21,7 @@
  *
  */
 #include "memory.h"
+#include <stdlib.h>
 
 /***********************************************************
  Function Definitions
@@ -49,7 +50,7 @@ void clear_all(char * ptr, unsigned int size){
 }
 
 
-unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned long length);
+unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned long length)
 {
 	if(src==dst)
 		{
@@ -57,7 +58,6 @@ unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned lo
 		}
 		else if(src<dst)
 		{
-			printf("src>dst\n");
 			for(unsigned long i=0;i<length;i++)
 			{
 				*(dst+((length-1)-i))=*(src+((length-1)-i));
@@ -65,7 +65,6 @@ unsigned char * my_memmove(unsigned char * src, unsigned char * dst, unsigned lo
 		}
 		else
 		{
-			printf("src<dst\n");
 			for(unsigned long i=0;i<=length;i++)
 			{
 				*(dst+i)=*(src+i);
@@ -86,7 +85,7 @@ unsigned char  * my_memcopy(unsigned char  * src, unsigned char  * dst, unsigned
 }
 
 
-unsigned char * my_memset(unsigned char * src, unsigned char length, unsigned char value)
+unsigned char * my_memset(unsigned char * src, unsigned long length, unsigned char value)
 {
 	for(unsigned long i=0;i<length;i++)
 	{
@@ -121,13 +120,13 @@ unsigned char * my_reverse(unsigned char * src, unsigned long length)
 }
 
 
-int* reserve_words(unsigned long length)
+uint32_t* reserve_words(unsigned long length)
 {
 	return malloc(sizeof(int)*length);
 }
 
 
-void free_words(int* src)
+void free_words(uint32_t* src)
 {
 	free(src);
 }
