@@ -10,20 +10,20 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-COMMON_SRC = main.c\
-			memory.c\
-			data.c\
-			stats.c\
-			course1.c
+COMMON_SRC = ./src/main.c\
+			 ./src/memory.c\
+			 ./src/data.c\
+			 ./src/stats.c\
+			 ./src/course1.c
 
 COMMON_INCLUDES =-I../include/common/
 		  
 # Add your include paths to this variable
 MSP432_INCLUDES = -I../include/msp432 \
-				  -I../include/CMSIS \
+				  -I../include/CMSIS
 				  
 MSP432_SRC = system_msp432p401r.c \
-			startup_msp432p401r_gcc.c \
-			interrupts_msp432p401r_gcc.c
+			 startup_msp432p401r_gcc.c \
+			 interrupts_msp432p401r_gcc.c
 		   
 
